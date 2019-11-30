@@ -27,7 +27,7 @@ The following example uses Docker and assumes you have Docker correctly installe
  1) Clone this project & `cd` into it:
 
     ```
-    git clone https://github.com/Shomeis-Eskandari/elementary_os && cd elementary_os
+    git clone https://github.com/Shomeis-Eskandari/elementary && cd elementary
     ```
 
  2) Configure the channel in the `etc/terraform.conf` (stable, daily).
