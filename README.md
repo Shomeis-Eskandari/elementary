@@ -27,7 +27,7 @@ The following example uses Docker and assumes you have Docker correctly installe
  1) Clone this project & `cd` into it:
 
     ```
-    git clone https://github.com/elementary/os && cd os
+    git clone https://github.com/Shomeis-Eskandari/elementary_os && cd elementary_os
     ```
 
  2) Configure the channel in the `etc/terraform.conf` (stable, daily).
@@ -35,17 +35,19 @@ The following example uses Docker and assumes you have Docker correctly installe
  3) Run the build:
 
     ```
-    mkdir artifacts
-    docker run --privileged -i \
-        -v /proc:/proc \
-        -v ${PWD}/artifacts:/artifacts \
-        -v ${PWD}:/working_dir \
-        -w /working_dir \
-        debian:latest \
-        /bin/bash -s etc/terraform.conf < build.sh
+    docker-compose up
     ```
 
  4) When done, your image will be in the `artifacts` folder.
+
+## ReBuild 
+
+  ```
+  docker container rm -f elementary_os
+  docker image rm -f elementary_os
+  rm -Rf ./artifacts/*
+  rm -Rf ./tmp/*
+  ```
 
 ## Further Information
 

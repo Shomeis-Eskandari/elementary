@@ -4,6 +4,12 @@ set -e
 
 CONFIG_PATH="etc/terraform.conf"
 
+echo -e "
+#----------------------#
+# RUN TERRAFORM SCRIPT #
+#----------------------#
+"
+
 # Call getopt to validate the provided input.
 options=$(getopt -o '' -l 'config-path:' -- "$@")
 [ $? -eq 0 ] || {
@@ -87,13 +93,16 @@ build () {
     lb build
 
     YYYYMMDD="$(date +%Y%m%d)"
-    OUTPUT_DIR="$BASE_DIR/builds/$BUILD_ARCH"
+    OUTPUT_DIR="$BASE_DIR/artifacts/$BUILD_ARCH"
     mkdir -p "$OUTPUT_DIR"
     FNAME="elementaryos-$VERSION-$CHANNEL.$YYYYMMDD$OUTPUT_SUFFIX"
     mv "$BASE_DIR/tmp/$BUILD_ARCH/live-image-$BUILD_ARCH.hybrid.iso" "$OUTPUT_DIR/${FNAME}.iso"
 
     md5sum "$OUTPUT_DIR/${FNAME}.iso" > "$OUTPUT_DIR/${FNAME}.md5.txt"
     sha256sum "$OUTPUT_DIR/${FNAME}.iso" > "$OUTPUT_DIR/${FNAME}.sha256.txt"
+    
+    chmod 777 -R "$OUTPUT_DIR"
+
 }
 
 check_permissions
