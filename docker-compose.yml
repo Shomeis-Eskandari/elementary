@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  elementary_os:
+    image: elementary_os
+    build: ./script
+    privileged: true
+    volumes:
+      - './artifacts:/elementary_os/artifacts'
+      - './etc:/elementary_os/etc'
+      - './tmp:/elementary_os/tmp'
+      - '/proc:/proc'
+    command: '/bin/bash terraform.sh etc/terraform.conf'
